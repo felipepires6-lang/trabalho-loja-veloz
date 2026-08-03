@@ -39,6 +39,6 @@ O pipeline foi construído utilizando o **GitHub Actions** (`.github/workflows/p
 
 ---
 
-## 📊 4. Observabilidade e Resiliência
+##  4. Observabilidade e Resiliência
 *   **Métricas & Logs:** Proposta conceitual utilizando Prometheus e Grafana.
 *   **Estratégia de Deploy:** Adotado o modelo **Canary Deployment** para mitigar riscos de indisponibilidade em produção.
