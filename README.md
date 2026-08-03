@@ -3,8 +3,6 @@
 
 Este repositório contém a solução fim a fim para a modernização da plataforma da **Loja Veloz**, migrando um ambiente fragmentado para uma arquitetura cloud-native escalável, resiliente e totalmente monitorada.
 
-## 📺 Link do Vídeo Pitch (Até 4 minutos)
-*   **Link do YouTube:** [COLE O LINK DO SEU VÍDEO AQUI]
 
 ---
 
