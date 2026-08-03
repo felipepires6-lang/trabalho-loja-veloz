@@ -1,4 +1,4 @@
-# 🚀 Projeto Pedidos Veloz - Cloud DevOps Strategy
+#  Projeto Pedidos Veloz - Cloud DevOps Strategy
 > Trabalho de Conclusão - Engenharia Cloud DevOps (UniFECAF)
 
 Este repositório contém a solução fim a fim para a modernização da plataforma da **Loja Veloz**, migrando um ambiente fragmentado para uma arquitetura cloud-native escalável, resiliente e totalmente monitorada.
@@ -6,7 +6,7 @@ Este repositório contém a solução fim a fim para a modernização da platafo
 
 ---
 
-## 🛠️ 1. Como Executar o Ambiente Local (Docker Compose)
+##  1. Como Executar o Ambiente Local (Docker Compose)
 Para rodar toda a arquitetura de microsserviços localmente com um único comando, siga os passos:
 
 1. Acesse a pasta do ambiente local:
@@ -24,7 +24,7 @@ Para rodar toda a arquitetura de microsserviços localmente com um único comand
 
 ---
 
-## ☸️ 2. Arquitetura Kubernetes (Produção)
+##  2. Arquitetura Kubernetes (Produção)
 Os manifestos de produção estão localizados na pasta `/k8s-manifests` e cobrem:
 *   **Deployments & Services:** Alta disponibilidade para os microsserviços.
 *   **Segurança:** Uso de `Secrets` e `ConfigMaps` para proteção de credenciais.
@@ -32,7 +32,7 @@ Os manifestos de produção estão localizados na pasta `/k8s-manifests` e cobre
 
 ---
 
-## 🔄 3. Pipeline de CI/CD (Automação)
+##  3. Pipeline de CI/CD (Automação)
 O pipeline foi construído utilizando o **GitHub Actions** (`.github/workflows/pipeline.yml`), cobrindo as seguintes etapas automatizadas:
 1.  **Validation:** Execução de Lint e Testes Unitários.
 2.  **Build & Push:** Construção de imagens Docker enxutas (Multi-stage) e publicação no Docker Hub.
