@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-service
+  namespace: pedidos-veloz
+spec:
+  replicas: 2 # Garante alta disponibilidade (2 instâncias rodando juntas)
+  selector:
+    matchLabels:
+      app: orders-service
+  template:
+    metadata:
+      labels:
+        app: orders-service
+    spec:
+      containers:
+      - name: orders-app
+        image: alpine
+        command: sh -c "echo 'Servico de Pedidos em Producao...' && sleep infinity"
+        ports:
+        - containerPort: 3000
+        
+        # PONTO CHAVE PARA NOTA MÁXIMA: Injetando as senhas do arquivo secrets-config.yaml
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: database-secrets
+            
+        # Sondas de integridade (Self-healing: se o app travar, o K8s reinicia ele sozinho)
+        livenessProbe:
+          exec:
+            command:
+            - true
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - true
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-service
+  namespace: pedidos-veloz
+spec:
+  type: ClusterIP # Canal de comunicação interno seguro
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: orders-service

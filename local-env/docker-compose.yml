@@ -1,0 +1,52 @@
+version: '3.8'
+
+networks:
+  veloz-network:
+    driver: bridge
+
+services:
+  # 1. Banco de Dados PostgreSQL (Onde os pedidos serão salvos)
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: veloz-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: SenhaSegura123
+      POSTGRES_DB: loja_veloz
+    ports:
+      - "5432:5432"
+    networks:
+      - veloz-network
+
+  # 2. API Gateway (A porta de entrada única para os clientes da loja)
+  api-gateway:
+    image: nginx:alpine
+    container_name: veloz-gateway
+    ports:
+      - "8080:80"
+    depends_on:
+      - pedidos-service
+    networks:
+      - veloz-network
+
+  # 3. Serviço de Pedidos (Microsserviço principal)
+  pedidos-service:
+    image: alpine
+    container_name: veloz-pedidos
+    command: sh -c "echo 'Servico de Pedidos Rodando...' && sleep infinity"
+    environment:
+      - DB_HOST=postgres-db
+      - DB_USER=admin
+      - DB_PASSWORD=SenhaSegura123
+    depends_on:
+      - postgres-db
+    networks:
+      - veloz-network
+
+  # 4. Serviço de Estoque (Microsserviço de inventário)
+  estoque-service:
+    image: alpine
+    container_name: veloz-estoque
+    command: sh -c "echo 'Servico de Estoque Rodando...' && sleep infinity"
+    networks:
+      - veloz-network
